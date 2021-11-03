@@ -146,7 +146,7 @@ function getSimpleAPI(cityString) {
 }
 
 function getForecastAPI(coords) {
-  return `https://api.openweathermap.org/data/2.5/onecall?lat=${coords.lat}&lon=${coords.lon}&APPID=7b58a8dc115b1a34f3bcde976a724019`;
+  return `https://api.openweathermap.org/data/2.5/onecall?lat=${coords.lat}&lon=${coords.lon}&exclude=${["minutely"]}&APPID=7b58a8dc115b1a34f3bcde976a724019`;
 }
 
 async function getCoords(searchValue) {
