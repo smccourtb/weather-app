@@ -11,16 +11,65 @@
 
 
 <body>
-    <form action="#">
-        <label for="city"></label>
-        <input type="text" id="city" name="city" placeholder="Search location..">
-    </form>
-    <section class="basic-info">
-        <div>
-            <span class="weather-desc"></span>
-            <h1 class="city-name"></h1>
+    <section class="input">
+        <form action="#">
+            <label for="city"></label>
+            <input type="text" id="city" name="city" placeholder="Search location..">
+        </form>
+        <div class="units">
+            <button class="c">°C</button>
+            <button class="f">°F</button>
         </div>
+    </section>
+    <section class="basic-info">
+        <h1 class="city-name"></h1>
+        <span class="weather-desc"></span>
         <p class="temp"></p>
+    </section>
+    <section class="forecast-container">
+        <button class="daily">Daily</button>
+        <div class="forecast-contaner">
+            <div class="day">Monday</div>
+            <div class="day-temp">64</div>
+            <div class="day-low">12</div>
+            <img>
+        </div>
+        <div class="forecast-contaner">
+            <div class="day">Tuesday</div>
+            <div class="day-temp">13</div>
+            <div class="day-low">13</div>
+            <img>
+        </div>
+        <div class="forecast-contaner">
+            <div class="day">Wednesday</div>
+            <div class="day-temp">73</div>
+            <div class="day-low">14</div>
+            <img>
+        </div>
+        <div class="forecast-contaner">
+            <div class="day">Thursday</div>
+            <div class="day-temp">56</div>
+            <div class="day-low">15</div>
+            <img>
+        </div>
+        <div class="forecast-contaner">
+            <div class="day">Friday</div>
+            <div class="day-temp">87</div>
+            <div class="day-low">16</div>
+            <img>
+        </div>
+        <div class="forecast-contaner">
+            <div class="day">Saturday</div>
+            <div class="day-temp">34</div>
+            <div class="day-low">17</div>
+            <img>
+        </div>
+        <div class="forecast-contaner">
+            <div class="day">Sunday</div>
+            <div class="day-temp">54</div>
+            <div class="day-low">18</div>
+            <img>
+        </div>
     </section>
 
 </body>

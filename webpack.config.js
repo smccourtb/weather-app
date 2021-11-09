@@ -7,22 +7,16 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
   },
   module: {
-
     rules: [
-
       {
-
         test: /\.css$/i,
 
         use: ["style-loader", "css-loader"],
-
       },
       {
-
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
 
         type: "asset/resource",
-
       },
       {
         test: /\.m?js$/,
@@ -30,14 +24,10 @@ module.exports = {
         use: {
           loader: "babel-loader",
           options: {
-            presets: [
-              ["@babel/preset-env", { targets: "defaults" }],
-            ],
+            presets: [["@babel/preset-env", { targets: "defaults" }]],
           },
         },
       },
-
     ],
-
   },
 };

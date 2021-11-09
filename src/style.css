@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Staatliches&display=swap");
+
 html,
 body,
 div,
@@ -79,12 +81,12 @@ time,
 mark,
 audio,
 video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
 article,
@@ -98,68 +100,135 @@ hgroup,
 menu,
 nav,
 section {
-    display: block;
+  display: block;
 }
 body {
-    line-height: 1;
+  line-height: 1;
 }
 ol,
 ul {
-    list-style: none;
+  list-style: none;
 }
 blockquote,
 q {
-    quotes: none;
+  quotes: none;
 }
 blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-    content: "";
-    content: none;
+  content: "";
+  content: none;
 }
 table {
-    border-collapse: collapse;
-    border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
 form {
-    margin-top: 75px;
-    flex: 0 1 auto;
+  margin-top: 75px;
+  flex: 0 1 auto;
 }
 body {
-    background: url("./background.jpg");
-    background-size: cover;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    color: white;
-}
-
-section {
-    flex: 1 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.basic-info {
-    display: flex;
-}
-
-.temp {
-    font-size: 36px;
+  background: url("./background.jpg") no-repeat;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
 }
 
 form > input {
-    border: none;
-    background: rgba(255, 255, 255, 0.329);
-    color: white;
-    outline-style: none;
-    border-radius: 1.7em;
-    height: 2em;
-    padding: 10px;
-    width: 110%;
+  border: none;
+  background: rgba(255, 255, 255, 0.329);
+  color: white;
+  outline-style: none;
+  border-radius: 1.7em;
+  height: 2em;
+  padding: 10px;
+  width: 25em;
+}
+.basic-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  border: solid;
+  width: 500px;
+  height: 300px;
+  flex: 0 0 auto;
+}
+
+.temp {
+  font-size: 36px;
+  align-self: flex-end;
+  font-family: "Staatliches", cursive;
+  font-size: 72px;
+}
+.weather-desc {
+  font-size: 5rem;
+  display: block;
+}
+
+.city-name {
+  font-family: "Staatliches", cursive;
+  font-size: 1.5em;
+  border-bottom: 3px solid white;
+  display: inline;
+}
+
+.forecast {
+  box-sizing: border-box;
+  border: solid;
+  height: 20em;
+  width: 100%;
+  display: grid;
+  /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr; */
+}
+
+.forecast-contaner {
+  border: solid;
+}
+
+.c,
+.f {
+  font-family: "Staatliches", cursive;
+  font-size: 36px;
+  background: none;
+  color: rgba(212, 212, 212, 0.74);
+  border: none;
+  transition: color 0.3s ease-out;
+}
+
+.c:hover,
+.f:hover,
+.selected-temp {
+  cursor: pointer;
+  color: white;
+  border-bottom: 1px solid white;
+}
+
+.units {
+  margin-top: 10px;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-height: 300px;
+}
+
+.daily {
+  font-family: "Staatliches", cursive;
+  padding: 0.75em;
+  /* display: inline; */
+  position: relative;
+  top: -3.5em;
+  left: em;
+  font-size: 1.1em;
+  /* border: solid; */
 }
