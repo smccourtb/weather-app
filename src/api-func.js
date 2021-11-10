@@ -295,7 +295,6 @@ async function getCoords(searchValue) {
   coord.name = data.name; // city name
   coord.country = data.sys.country;
   coord.state = convertStateCode(searchValue.split(",")[1]);
-  console.log(coord);
   return coord;
 }
 
@@ -310,8 +309,8 @@ function getDailyForecast(datetime, temp) {
   const dayString = convertDayToString(getDay(dt));
   const dayOfMonth = getDate(dt);
   const month = getMonth(dt);
-  const tempDay = temp.day;
-  const tempMin = temp.min;
+  const tempDay = Math.round(temp.day);
+  const tempMin = Math.round(temp.min);
   return {
     dayString,
     dayOfMonth,

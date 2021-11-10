@@ -180,16 +180,45 @@ form > input {
   display: inline;
 }
 
-.forecast {
+.forecast-container {
   box-sizing: border-box;
   border: solid;
-  height: 20em;
+  height: 17em;
   width: 100%;
   display: grid;
-  /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr; */
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
-.forecast-contaner {
+.forecast {
+  border: solid;
+  flex: 1 0 auto;
+  flex-direction: column;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  font-family: "Staatliches", cursive;
+}
+
+.day {
+  flex: 0 1 auto;
+  align-self: flex-start;
+  padding: 0.5em;
+  font-size: 1.5em;
+}
+
+.day-temp,
+.day-low {
+  flex: 1 0 auto;
+  font-size: 1.8em;
+}
+
+.day-temp {
+  align-self: center;
+  padding: 0.5em;
+  font-size: 3em;
+}
+
+.day-temp > span {
   border: solid;
 }
 
@@ -225,10 +254,8 @@ form > input {
 .daily {
   font-family: "Staatliches", cursive;
   padding: 0.75em;
-  /* display: inline; */
   position: relative;
-  top: -3.5em;
-  left: em;
+  align-self: flex-start;
+  margin-left: 0.5em;
   font-size: 1.1em;
-  /* border: solid; */
 }
