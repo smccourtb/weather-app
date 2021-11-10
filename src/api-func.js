@@ -1,4 +1,6 @@
-import { fromUnixTime, getDay, getDate, getMonth } from "date-fns";
+import {
+  fromUnixTime, getDay, getDate, getMonth, getHours,
+} from "date-fns";
 // sanitizes and returns the user search value for the api call
 function getInputValue() {
   const input = document.querySelector("#city");
@@ -268,6 +270,27 @@ function convertDayToString(day) {
   }
 }
 
+function convertMonthString(month) {
+  switch (month) {
+    case 0: return "January";
+    case 1: return "February";
+    case 2: return "March";
+    case 3: return "April";
+    case 4: return "May";
+    case 5: return "June";
+    case 6: return "July";
+    case 7: return "August";
+    case 8: return "September";
+    case 9: return "October";
+    case 10: return "November";
+    case 11: return "December";
+    default: return month;
+  }
+}
+
+function convertDecimal(value) {
+  return Math.round(value * 100);
+}
 function getSimpleAPI(cityString) {
   const stateString = cityString.split(",");
   if (stateString.length < 2) {
@@ -281,15 +304,17 @@ function getSimpleAPI(cityString) {
 }
 
 function getForecastAPI(coords, units) {
-  return `https://api.openweathermap.org/data/2.5/onecall?lat=${
-    coords.lat
-  }&lon=${coords.lon}&exclude=${[
-    "minutely",
+  return `https://api.openweathermap.org/data/2.5/onecall?lat=${coords.lat}&lon=${coords.lon}&exclude=${["minutely",
   ]}&APPID=7b58a8dc115b1a34f3bcde976a724019&units=${units}`;
+}
+
+function getWeatherIcon(iconNum) {
+  return `http://openweathermap.org/img/wn/${iconNum}@2x.png`;
 }
 
 async function getCoords(searchValue) {
   const response = await fetch(getSimpleAPI(searchValue), { mode: "cors" });
+  console.log("RESPONSE: ", response);
   const data = await response.json();
   const { coord } = data;
   coord.name = data.name; // city name
@@ -304,20 +329,36 @@ async function getDetailedWeather(coords, units) {
   return data;
 }
 
-function getDailyForecast(datetime, temp) {
+function getDailyForecast(datetime, temp, icon, chance) {
   const dt = fromUnixTime(datetime);
   const dayString = convertDayToString(getDay(dt));
   const dayOfMonth = getDate(dt);
-  const month = getMonth(dt);
+  const month = convertMonthString(getMonth(dt));
   const tempDay = Math.round(temp.day);
   const tempMin = Math.round(temp.min);
+  const weatherIcon = getWeatherIcon(icon);
+  const precipitationChance = `${convertDecimal(chance)}%`;
   return {
     dayString,
     dayOfMonth,
     month,
     tempDay,
     tempMin,
+    weatherIcon,
+    precipitationChance,
   };
 }
 
-export { getCoords, getDetailedWeather, getInputValue, getDailyForecast };
+function getHourlyForecast(datetime, temp, icon, chance) {
+  const dt = fromUnixTime(datetime);
+  const hour = getHours(dt);
+  const weatherIcon = getWeatherIcon(icon);
+  const precipitationChance = `${convertDecimal(chance)}%`;
+  return {
+    hour, weatherIcon, temp, precipitationChance,
+  };
+}
+
+export {
+  getCoords, getDetailedWeather, getInputValue, getDailyForecast, getHourlyForecast,
+};

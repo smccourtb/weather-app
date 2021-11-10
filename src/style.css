@@ -182,44 +182,98 @@ form > input {
 
 .forecast-container {
   box-sizing: border-box;
-  border: solid;
+  /* border: solid; */
   height: 17em;
-  width: 100%;
+  width: 99%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 .forecast {
-  border: solid;
+  /* border: solid; */
   flex: 1 0 auto;
   flex-direction: column;
   justify-content: center;
   display: flex;
   align-items: center;
   font-family: "Staatliches", cursive;
-}
-
-.day {
-  flex: 0 1 auto;
-  align-self: flex-start;
-  padding: 0.5em;
-  font-size: 1.5em;
-}
-
-.day-temp,
-.day-low {
-  flex: 1 0 auto;
-  font-size: 1.8em;
-}
-
-.day-temp {
-  align-self: center;
-  padding: 0.5em;
-  font-size: 3em;
-}
-
-.day-temp > span {
   border: solid;
+}
+
+.date-info {
+  align-self: center;
+  /* border: solid; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.day,
+.date {
+  /* align-self: flex-start; */
+  padding-bottom: 0;
+  font-size: 2em;
+}
+
+.date {
+  align-self: center;
+  font-size: 1em;
+  border-bottom: 1px solid white;
+  /* display: inline-block; */
+}
+
+.weather-info {
+  /* border: solid; */
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+  padding: 1em 0.1em;
+  width: 100%;
+}
+
+.temps {
+  /* flex: 1 0 auto; */
+  font-size: 2.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 1em;
+  padding-left: 0.2em;
+}
+
+.avg,
+.low {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.avg > div,
+.low > div {
+  display: flex;
+  border-bottom: solid 1px white;
+}
+
+.avg > p,
+.low > p {
+  font-size: 0.35em;
+  padding-top: 0.2em;
+}
+
+.ts {
+  font-size: 0.3em;
+}
+.weather {
+  flex: 1 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+img {
+  /* border: solid; */
 }
 
 .c,
@@ -251,11 +305,16 @@ form > input {
   max-height: 300px;
 }
 
-.daily {
+.daily,
+.hourly {
   font-family: "Staatliches", cursive;
   padding: 0.75em;
   position: relative;
   align-self: flex-start;
   margin-left: 0.5em;
   font-size: 1.1em;
+}
+
+.btn-group {
+  align-self: flex-start;
 }

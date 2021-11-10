@@ -1,10 +1,11 @@
 import "./style.css";
 import "regenerator-runtime/runtime";
-
+import * as dom from "./dom-func";
 import * as api from "./api-func";
 
 let preferredUnit = "imperial";
 let lastSearchValue = "";
+let selectedForecast = "daily";
 const celsiusSymbol = "°C";
 const farenheitSymbol = "°F";
 // element for user input to search for city
@@ -14,7 +15,9 @@ const temperature = document.querySelector(".temp");
 const desc = document.querySelector(".weather-desc");
 const celsiusBtn = document.querySelector(".c");
 const farenheitBtn = document.querySelector(".f");
-const dayNodes = document.getElementsByClassName("forecast");
+const forecastContainer = document.querySelector(".forecast-container");
+const dailyForecast = document.querySelector(".daily");
+const hourlyForecast = document.querySelector(".hourly");
 
 // set farenheit as defualt selected for styles
 farenheitBtn.classList.add("selected-temp");
@@ -27,14 +30,30 @@ function getTempSymbol() {
 }
 
 function updateDailyForecast(dayData) {
-  console.log(dayNodes[0].children[1].children[0]);
+  for (let i = 0; i < 7; i += 1) {
+    forecastContainer.appendChild(dom.buildDailyForecast());
+  }
+  const dayNodes = document.getElementsByClassName("forecast");
   for (let i = 0; i < dayNodes.length; i += 1) {
-    dayNodes[i].children[0].innerText = dayData[i].dayString;
-    dayNodes[i].children[1].innerText = dayData[i].tempDay;
-
-    dayNodes[i].children[2].textContent = dayData[i].tempMin;
+    dom.buildDailyForecast();
+    const dateInfo = dayNodes[i].children[0];
+    const weatherInfo = dayNodes[i].children[1];
+    dateInfo.children[0].innerText = dayData[i].dayString;
+    dateInfo.children[1].innerText = `${dayData[i].month} ${dayData[i].dayOfMonth}`;
+    const temps = weatherInfo.children[0];
+    const weather = weatherInfo.children[1];
+    temps.children[0].children[0].children[0].textContent = dayData[i].tempDay;
+    temps.children[0].children[0].children[1].textContent = getTempSymbol();
+    temps.children[1].children[0].children[0].textContent = dayData[i].tempMin;
+    temps.children[1].children[0].children[1].textContent = getTempSymbol();
+    weather.children[0].src = dayData[i].weatherIcon;
+    weather.children[1].textContent = dayData[i].precipitationChance;
   }
 }
+
+// function updateHourlyForecast(hourlyData) {
+
+// }
 
 async function getWeather(location = "") {
   let query;
@@ -60,11 +79,16 @@ async function getWeather(location = "") {
   const { temp } = weatherData.current;
   temperature.textContent = `${Math.round(temp)}${getTempSymbol()}`;
   desc.textContent = weatherData.current.weather[0].description;
-  const { daily } = weatherData;
-  const forecastData = daily.map((x) => api.getDailyForecast(x.dt, x.temp));
-
-  forecastData.shift();
-  updateDailyForecast(forecastData);
+  const { daily, hourly } = weatherData;
+  if (selectedForecast === "hourly") {
+    const hourlyForecastData = hourly.map((x) => api.getHourlyForecast(x.dt, x.temp,
+      x.weather[0].icon, x.pop));
+  } else {
+    const dailyForecastData = daily.map((x) => api.getDailyForecast(x.dt, x.temp,
+      x.weather[0].icon, x.pop));
+    dailyForecastData.shift();
+    updateDailyForecast(dailyForecastData);
+  }
 }
 
 form.addEventListener("submit", (e) => {
@@ -88,4 +112,18 @@ farenheitBtn.addEventListener("click", () => {
     preferredUnit = "imperial";
     getWeather(lastSearchValue);
   }
+});
+
+dailyForecast.addEventListener("click", () => {
+  if (selectedForecast === "hourly") {
+    selectedForecast = "daily";
+  }
+  getWeather(lastSearchValue);
+});
+
+hourlyForecast.addEventListener("click", () => {
+  if (selectedForecast === "daily") {
+    selectedForecast = "hourly";
+  }
+  getWeather(lastSearchValue);
 });
