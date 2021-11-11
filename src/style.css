@@ -182,11 +182,11 @@ form > input {
 
 .forecast-container {
   box-sizing: border-box;
-  /* border: solid; */
   height: 17em;
   width: 99%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  overflow:hidden;
 }
 
 .forecast {
@@ -197,20 +197,17 @@ form > input {
   display: flex;
   align-items: center;
   font-family: "Staatliches", cursive;
-  border: solid;
 }
 
 .date-info {
   align-self: center;
-  /* border: solid; */
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
 .day,
-.date {
-  /* align-self: flex-start; */
+.date, .hour {
   padding-bottom: 0;
   font-size: 2em;
 }
@@ -219,11 +216,9 @@ form > input {
   align-self: center;
   font-size: 1em;
   border-bottom: 1px solid white;
-  /* display: inline-block; */
 }
 
 .weather-info {
-  /* border: solid; */
   display: flex;
   flex-direction: column;
   flex: 1 0 auto;
@@ -272,9 +267,6 @@ form > input {
   justify-content: center;
   align-items: center;
 }
-img {
-  /* border: solid; */
-}
 
 .c,
 .f {
@@ -306,7 +298,9 @@ img {
 }
 
 .daily,
-.hourly {
+.hourly,
+.left-nav,
+.right-nav {
   font-family: "Staatliches", cursive;
   padding: 0.75em;
   position: relative;
@@ -317,4 +311,32 @@ img {
 
 .btn-group {
   align-self: flex-start;
+  display:flex;
+  justify-content: center;
+}
+
+
+.left-nav,
+.right-nav {
+  background: none;
+  border:none;
+  color:rgba(255, 255, 255, 0.658);
+  font-size: 2em;
+  padding: 0 .75em;
+}
+
+.left-nav:hover,
+.right-nav:hover {
+  transform: scale(1.3);
+  color:white;
+  transition: all .3s ease-in-out;
+}
+
+.hour-temps {
+  font-size: 2.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding-left: 0.2em;
 }

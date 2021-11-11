@@ -1,6 +1,3 @@
-const forecastContainer = document.querySelector(".forecast-container");
-const buttonGroup = document.querySelector(".btn-group");
-
 function buildDailyForecast() {
   // holds all elements inside
   const dailyContainer = document.createElement("div");
@@ -65,7 +62,50 @@ function buildDailyForecast() {
 }
 
 function buildHourlyForecast() {
+  // holds all elements inside
+  const dailyContainer = document.createElement("div");
+  // contains day of the week and date
+  const hourInfo = document.createElement("div");
+  const hour = document.createElement("p");
+  const timeOfDay = document.createElement("p");
+  // contains temperatures, icons, and precipitation chance
+  const weatherInfo = document.createElement("div");
+  const temps = document.createElement("div");
+  const avgContainer = document.createElement("div");
+  const dayTemp = document.createElement("div");
+  const avgTempSymbol = document.createElement("span");
+  const avgSub = document.createElement("p");
+  const weather = document.createElement("div");
+  const img = document.createElement("img");
+  const chance = document.createElement("p");
 
+  // add classes for styling
+  dailyContainer.classList.add("forecast");
+  hourInfo.classList.add("hour-info");
+  hour.classList.add("hour");
+  timeOfDay.classList.add("time-of-day");
+  weatherInfo.classList.add("weather-info");
+  temps.classList.add("hour-temps");
+
+  dayTemp.classList.add("day-temp");
+  avgTempSymbol.classList.add("ts");
+
+  weather.classList.add("weather");
+  chance.classList.add("precipitation");
+
+  // add elements to containers
+
+  hourInfo.appendChild(hour);
+  hourInfo.appendChild(timeOfDay);
+
+  temps.appendChild(dayTemp);
+  temps.appendChild(avgTempSymbol);
+  weather.appendChild(img);
+  weather.appendChild(chance);
+  weatherInfo.appendChild(temps);
+  weatherInfo.appendChild(weather);
+  dailyContainer.append(hourInfo, weatherInfo);
+  return dailyContainer;
 }
 
 export { buildDailyForecast, buildHourlyForecast };

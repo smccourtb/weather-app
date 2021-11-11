@@ -288,6 +288,24 @@ function convertMonthString(month) {
   }
 }
 
+function convertHours(hour) {
+  switch (hour) {
+    case 0: case 12: return "12";
+    case 1: case 13: return "1";
+    case 2: case 14: return "2";
+    case 3: case 15: return "3";
+    case 4: case 16: return "4";
+    case 5: case 17: return "5";
+    case 6: case 18: return "6";
+    case 7: case 19: return "7";
+    case 8: case 20: return "8";
+    case 9: case 21: return "9";
+    case 10: case 22: return "10";
+    case 11: case 23: return "11";
+    default: return hour;
+  }
+}
+
 function convertDecimal(value) {
   return Math.round(value * 100);
 }
@@ -314,7 +332,6 @@ function getWeatherIcon(iconNum) {
 
 async function getCoords(searchValue) {
   const response = await fetch(getSimpleAPI(searchValue), { mode: "cors" });
-  console.log("RESPONSE: ", response);
   const data = await response.json();
   const { coord } = data;
   coord.name = data.name; // city name
@@ -360,5 +377,5 @@ function getHourlyForecast(datetime, temp, icon, chance) {
 }
 
 export {
-  getCoords, getDetailedWeather, getInputValue, getDailyForecast, getHourlyForecast,
+  getCoords, getDetailedWeather, getInputValue, getDailyForecast, getHourlyForecast, convertHours,
 };
